@@ -1,0 +1,43 @@
+
+<div class=" content">
+  <div class=" row">
+    <div class=" col-md-6" style="margin-top: 10%; margin-left: 25%;">
+      <div class=" card">
+        <div class=" card-header"><h1 class=" title text-center">Usuários cadastrados</h1></div>
+        <div class=" card-body">
+          <button class="btn btn-primary" (click)="abreCadastroUsuario()">Novo</button>
+          <div class="table-full-width table-responsive">
+            <table class="table">
+              <thead>
+              <tr>
+                <th>Nome</th>
+                <th>Quantidade de filmes alugados</th>
+                <th>Situação do usuário</th>
+                <th>Ações</th>
+              </tr>
+              </thead>
+              <tbody *ngFor="let item of usuarios">
+              <tr>
+                <td>{{item.nome}}</td>
+                <td>{{item.filmes}}</td>
+                <td>{{item.situacao}}</td>
+                <td>
+                  <button type="button" rel="tooltip" title="Realizar locação" class="btn btn-info btn-link btn-icon btn-sm">
+                    <i class="tim-icons icon-double-right"></i>
+                  </button>
+                  <button type="button" rel="tooltip" title="Visualizar" class="btn btn-success btn-link btn-icon btn-sm">
+                    <i class="fa fa-eye"></i>
+                  </button>
+                  <button type="button" rel="tooltip" title="Histórico de locação" class="btn btn-danger btn-link btn-icon btn-sm">
+                    <i class="tim-icons icon-book-bookmark"></i>
+                  </button>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,105 @@
+<h1 mat-dialog-title class="text-center" *ngIf="data1.tipo === 'devolucao'">Deseja realizar a devolução do filme?</h1>
+<h1 mat-dialog-title class="text-center" *ngIf="data1.tipo === 'locacao'">Deseja realizar a locação do filme {{data1.filme.nome}}?</h1>
+<div class="card-body">
+  <div class="row" *ngIf="data1.tipo === 'devolucao'">
+    <form>
+      <div class="row">
+        <div class="col-12">
+          <input [(ngModel)]="nome" disabled name="nome" class="input-group" placeholder="Nome completo" id="nome">
+            <mat-form-field appearance="fill">
+              <mat-label>Sexo</mat-label>
+              <mat-select [(value)]="selected" disabled>
+                <mat-option value="">Selecione o sexo</mat-option>
+                <mat-option value="masculino">Masculino</mat-option>
+                <mat-option value="feminino">Feminino</mat-option>
+              </mat-select>
+            </mat-form-field>
+        </div>
+      </div>
+      <input disabled [(ngModel)]="cpf" name="cpf" class="input-group" mask="000.000.000-00" placeholder="CPF" id="cpf">
+      <mat-form-field appearance="fill">
+        <mat-label>Data de nascimento</mat-label>
+        <input disabled matInput [(ngModel)]="data" name="data" [matDatepicker]="picker">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+    </form>
+  </div>
+
+  <div class="row" *ngIf="data1.tipo === 'locacao'">
+    <mat-form-field appearance="fill">
+      <mat-label>Selecione o cliente</mat-label>
+      <mat-select [(value)]="selected" >
+        <mat-option *ngFor="let item of usuarios" [value]="item">
+          {{item.nome}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div class="row" *ngIf="data1.tipo === 'visualizar'">
+    <div id="usuarios" *ngIf="data1.usuarios">
+      <form>
+        <div class="row">
+          <div class="col-12">
+            <input [(ngModel)]="nome" disabled name="nome" class="input-group" placeholder="Nome completo" id="nome">
+            <mat-form-field appearance="fill">
+              <mat-label>Sexo</mat-label>
+              <mat-select [(value)]="selected" disabled>
+                <mat-option value="">Selecione o sexo</mat-option>
+                <mat-option value="masculino">Masculino</mat-option>
+                <mat-option value="feminino">Feminino</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+        <input disabled [(ngModel)]="cpf" name="cpf" class="input-group" mask="000.000.000-00" placeholder="CPF" id="cpf">
+        <mat-form-field appearance="fill">
+          <mat-label>Data de nascimento</mat-label>
+          <input disabled matInput [(ngModel)]="data" name="data" [matDatepicker]="picker">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+      </form>
+    </div>
+    <form>
+      <div class="row">
+        <div class="col-12">
+          <input [(ngModel)]="nomeFilme" disabled name="nomeFilme" class="input-group">
+          <input [(ngModel)]="categoriaFilme" disabled name="categoriaFilme" class="input-group">
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <div class="row" *ngIf="data1.tipo === 'historico'">
+    <table class="table">
+      <thead>
+      <tr>
+        <th class="text-black-50">Nome do cliente</th>
+        <th class="text-black-50">Nome do filme</th>
+        <th class="text-black-50">Data alugada</th>
+        <th class="text-black-50">Data devolução</th>
+      </tr>
+      </thead>
+      <tbody *ngFor="let item of data1.historico">
+      <tr>
+        <td style="color: black !important;">{{item.cliente.nome}}</td>
+        <td style="color: black !important;">{{item.idFilme.nome}}</td>
+        <td style="color: black !important;">{{item.dataAlugado}}</td>
+        <td style="color: black !important;">{{item.dataDev}}</td>
+
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="row">
+    <button class="col-5 btn btn-warning" (click)="fechaModal()">
+      Fechar
+    </button>
+    <button class="col-6 btn btn-success" *ngIf="data1.tipo !== 'visualizar' && data1.tipo !== 'historico'" (click)="salva()">
+      Confirmar
+    </button>
+  </div>
+</div>

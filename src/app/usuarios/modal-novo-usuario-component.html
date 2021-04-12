@@ -1,0 +1,36 @@
+<h1 mat-dialog-title class="text-center">Cadastro de usuários</h1>
+<div class="card-body">
+  <div class="row">
+    <form>
+      <div class="row">
+        <div class="col-12">
+          <input [(ngModel)]="nome" name="nome" class="input-group" placeholder="Nome completo" id="nome">
+            <mat-form-field appearance="fill">
+              <mat-label>Sexo</mat-label>
+              <mat-select [(value)]="selected">
+                <mat-option value="">Selecione o sexo</mat-option>
+                <mat-option value="masculino">Masculino</mat-option>
+                <mat-option value="feminino">Feminino</mat-option>
+              </mat-select>
+            </mat-form-field>
+        </div>
+      </div>
+      <input [(ngModel)]="cpf" name="cpf" class="input-group" mask="000.000.000-00" placeholder="CPF" id="cpf">
+      <mat-form-field appearance="fill">
+        <mat-label>Data de nascimento</mat-label>
+        <input matInput [(ngModel)]="data" name="data" [matDatepicker]="picker">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+    </form>
+
+  </div>
+  <div class="row">
+    <button class="col-5 btn btn-warning" (click)="fechaModal()">
+      Fechar
+    </button>
+    <button class="col-6 btn btn-success" (click)="salva()">
+      Salvar
+    </button>
+  </div>
+</div>
